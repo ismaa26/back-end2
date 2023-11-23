@@ -52,3 +52,42 @@ export const updateUser = async (req: Request, res: Response) => {
         }
     }
 }
+
+export const deleteUser = async (req: Request, res: Response) => {
+
+    try {
+        const { id } = req.params;
+
+        const result = await User.delete({ id: parseInt(id) });
+
+        if (result.affected === 0) {
+            return res.status(400).json({ message: 'User not found' });
+        }
+
+        return res.status(204);
+
+    } catch (error) {
+        if (error instanceof Error) {
+            return res.status(400).json({ message: error.message });
+        }
+    }
+
+}
+
+export const getUser = async (req: Request, res: Response) => {
+
+    try {
+        const { id } = req.params;
+
+        const user = await User.findOneBy({ id: parseInt(id) });
+
+        return res.json(user);
+
+    } catch (error) {
+        if (error instanceof Error) {
+            return res.status(400).json({ message: error.message });
+        }
+
+    }
+
+}
