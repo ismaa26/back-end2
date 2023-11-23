@@ -1,3 +1,6 @@
+data/
+cloudbeaver/
+
 # Logs
 logs
 *.log
