@@ -4,11 +4,14 @@ import { User } from '../entities/User';
 export const createUser = async (req: Request, res: Response) => {
 
     try {
-        const { firstname, lastname } = req.body;
+        const { nombre_de_usuario, email, contraseña, repetir_contraseña } = req.body;
 
         const user = new User();
-        user.firstname = firstname;
-        user.lastname = lastname;
+        user.nombre_de_usuario = nombre_de_usuario;
+        user.email = email;
+        user.contraseña = contraseña;
+        user.repetir_contraseña = repetir_contraseña;
+
 
         await user.save();
 
